@@ -21,7 +21,24 @@ import RecommendationCard from '../components/RecommendationCard';
 import { fetchMeta, analyzeGovernance, extractErrorMessage } from '../api/governanceApi';
 
 const DEFAULT_META = {
-  roles: ['Developer', 'QA Engineer', 'Senior Developer', 'DevOps Engineer', 'Database Administrator', 'Security Administrator', 'Manager'],
+  roles: [
+    'Developer',
+    'Senior Developer',
+    'QA Engineer',
+    'DevOps Engineer',
+    'Senior DevOps Engineer',
+    'Database Administrator',
+    'Senior DBA',
+    'Infrastructure Engineer',
+    'IAM Administrator',
+    'Security Administrator',
+    'Network Engineer',
+    'Data Administrator',
+    'ML Engineer',
+    'Site Reliability Engineer',
+    'Incident Commander',
+    'Manager',
+  ],
   departments: ['Engineering', 'QA', 'Infrastructure', 'Security'],
   companies: ['ABC Bank', 'XYZ Solutions'],
   environments: ['Development', 'QA', 'UAT', 'Production'],
