@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Env files
+.env
+backend/.env
+
+# Build output
+frontend/build/
+
+# Vector store indexes (regenerated from source docx)
+backend/vectorstores/*
+!backend/vectorstores/.gitkeep
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
