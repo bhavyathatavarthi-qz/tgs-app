@@ -63,39 +63,36 @@ tgs-app/
 
 ---
 
-## 3. Backend setup
+## 3. Backend setup (Python FastAPI)
 
 ```bash
 cd backend
+
+# Create a virtual environment (optional but recommended)
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Copy .env.example to .env if not already done, and add your GROQ_API_KEY
 cp .env.example .env
-# then edit .env and paste your GROQ_API_KEY
-
-npm install --legacy-peer-deps
 ```
 
-> **Why `--legacy-peer-deps`?** `@langchain/community` declares an optional
-> peer on `better-sqlite3` whose version range collides with a transitive
-> `typeorm` peer. It's a harmless, well-known LangChain JS peer-resolution
-> quirk — `--legacy-peer-deps` resolves it safely.
-
-First run builds the vector indexes from `data/abc_bank.docx` and
-`data/xyz_solutions.docx` automatically (`REBUILD_INDEX_ON_START=true` by
-default). To speed up subsequent boots, run the index build once and then
-flip that flag off:
+Start the Python backend:
 
 ```bash
-npm run build:index
-# then in .env: REBUILD_INDEX_ON_START=false
-```
-
-Start the API:
-
-```bash
-npm start
+python main.py
+# or using uvicorn directly:
+# uvicorn main:app --reload --port 5000
 # → TGS listening on http://localhost:5000
 ```
 
 Health check: `GET http://localhost:5000/api/health`
+
 
 ---
 

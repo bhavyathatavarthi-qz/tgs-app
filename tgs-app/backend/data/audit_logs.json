@@ -1,0 +1,59 @@
+[
+  {
+    "requestId": "a1171a97-e91d-4eb1-bf3f-ff2e8458638d",
+    "evaluatedAt": "2026-07-21T11:17:10.314637+00:00",
+    "requester": {
+      "username": "Bhavya",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "create database"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 15.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "APPROVED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, Developer, matches the Authorized Role specified in POL-001 for creating databases in the Development environment."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the Development environment, which is explicitly allowed by POL-001 for database creation."
+      },
+      {
+        "name": "Consent",
+        "status": "pass",
+        "detail": "No consent is required for creating databases in the Development environment according to POL-001."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "pass",
+        "detail": "The request complies with POL-001, which permits Developers to create databases in the Development environment for approved project activities."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by a Developer, a role accountable for database operations in the Development environment as per POL-001 and POL-002."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-001",
+        "title": "Create Database in Development Environment",
+        "category": "Database Operations",
+        "summary": "Developers may create databases in the Development environment for approved project activities, following enterprise naming standards and security guidelines."
+      }
+    ],
+    "reason": "The request to create a database is made by a Developer in the Development environment, which aligns with POL-001. The policy specifies that Developers can create databases in this environment without needing consent, and the request complies with the policy's requirements. Given the low risk score and Zone 1 (Auto Respond) assessment, the request can be approved without modification. The requester's role and the environment match the policy's specifications, ensuring accountability and compliance.",
+    "recommendation": "Proceed with creating the database in the Development environment, adhering to enterprise naming standards and security guidelines as outlined in POL-001."
+  }
+]
