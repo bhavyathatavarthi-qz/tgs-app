@@ -21,7 +21,7 @@ CORS_ORIGINS = [
     if origin.strip()
 ]
 RETRIEVAL_TOP_K = int(os.getenv("RETRIEVAL_TOP_K", "5"))
-REBUILD_INDEX_ON_START = os.getenv("REBUILD_INDEX_ON_START", "true").lower() == "true"
+REBUILD_INDEX_ON_START = os.getenv("REBUILD_INDEX_ON_START", "false").lower() == "true"
 
 DATA_DIR = BASE_DIR / "data"
 VECTOR_STORE_DIR = BASE_DIR / "vectorstores"

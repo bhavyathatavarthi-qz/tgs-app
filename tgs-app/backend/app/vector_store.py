@@ -13,24 +13,39 @@ os.environ["HF_HUB_DISABLE_XET_STORAGE"] = "1"
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
 
 from langchain_core.documents import Document
-from langchain_community.vectorstores import Chroma
+try:
+    from langchain_chroma import Chroma
+except ImportError:
+    from langchain_community.vectorstores import Chroma
+
+class ONNXEmbeddings:
+    """ONNX-based lightweight embedding generator (all-MiniLM-L6-v2).
+    Bypasses PyTorch shm.dll Windows AppLocker policy blocks.
+    """
+    def __init__(self):
+        from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
+        self._ef = DefaultEmbeddingFunction()
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        results = self._ef(texts)
+        return [res.tolist() for res in results]
+
+    def embed_query(self, text: str) -> List[float]:
+        results = self._ef([text])
+        return results[0].tolist()
 
 _embeddings_singleton = None
 
 def get_embeddings_model():
     global _embeddings_singleton
     if _embeddings_singleton is None:
-        print(f"[vectorStore] Loading embedding model '{config.EMBEDDING_MODEL}'...")
+        print(f"[vectorStore] Loading ONNX embedding model (all-MiniLM-L6-v2)...")
         try:
-            from langchain_huggingface import HuggingFaceEmbeddings
-            _embeddings_singleton = HuggingFaceEmbeddings(
-                model_name=config.EMBEDDING_MODEL,
-                model_kwargs={"device": "cpu"},
-                encode_kwargs={"normalize_embeddings": True}
-            )
+            _embeddings_singleton = ONNXEmbeddings()
+            print("[vectorStore] ONNX embedding model loaded successfully.")
         except Exception as e:
-            print(f"[vectorStore] HuggingFaceEmbeddings fallback via community: {e}")
-            from langchain_community.embeddings import HuggingFaceEmbeddings
+            print(f"[vectorStore] ONNX embeddings fallback to HuggingFaceEmbeddings: {e}")
+            from langchain_huggingface import HuggingFaceEmbeddings
             _embeddings_singleton = HuggingFaceEmbeddings(
                 model_name=config.EMBEDDING_MODEL,
                 model_kwargs={"device": "cpu"},

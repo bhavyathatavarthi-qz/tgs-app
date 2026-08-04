@@ -364,5 +364,62 @@
     ],
     "reason": "The request to create a database in the Development environment is approved because the requester's role, Developer, matches the Authorized Role specified in POL-001. The Development environment is also consistent with POL-001, and no consent is required for this action. The request complies with POL-001, which governs database creation in the Development environment. Additionally, the requester's role is accountable for such actions as per POL-001 and POL-002. Given the low risk score and Zone 1 (Auto Respond) assessment, the request can proceed without further clarification or escalation.",
     "recommendation": "Proceed with creating the database in the Development environment, ensuring adherence to enterprise naming standards and security guidelines as outlined in POL-001."
+  },
+  {
+    "requestId": "2981b98d-2dbc-49ea-b800-e8049b9b2fe5",
+    "evaluatedAt": "2026-08-04T13:03:52.377214+00:00",
+    "requester": {
+      "username": "Bhavya",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Deploy app to production"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 12.0,
+      "zone": "Zone 3",
+      "zoneLabel": "Escalate",
+      "zoneColor": "orange"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requester's role, Developer, does not match the policy's Authorized Role, Senior DevOps Engineer, for deploying to production as per POL-013."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the production environment, which is a valid environment for deployment."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The policy for production deployment, POL-013, requires Change Advisory Board (CAB) approval, which is not evidenced in the request."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "The request does not comply with POL-013, which mandates specific conditions for production deployment, including CAB approval and a successful rollback plan."
+      },
+      {
+        "name": "Accountability",
+        "status": "warning",
+        "detail": "The request lacks evidence of accountability measures, such as documentation and approval, as required for production deployments."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-013",
+        "title": "Deploy Application to Production",
+        "category": "Application Deployment",
+        "summary": "Production deployments require CAB approval, a successful rollback plan, and adherence to change management standards."
+      }
+    ],
+    "reason": "The request to deploy the app to production is held due to the requester's role not matching the authorized role for production deployment as per POL-013, and the lack of CAB approval. The CAS assessment indicates a Zone 3 (Escalate) risk, which requires human escalation and consent. Given the policy requirements and the risk zone, the request cannot proceed without further review and approval. The decision is conservative, prioritizing policy compliance and accountability over immediate deployment. The request will be held pending further clarification and approval.",
+    "recommendation": "Escalate the request to a Senior DevOps Engineer for review and obtain Change Advisory Board (CAB) approval before proceeding with the deployment."
   }
 ]
