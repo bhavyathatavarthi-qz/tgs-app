@@ -2,7 +2,7 @@
   "name": "tgs-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "Trust & Governance Service (TGS) \u2014 enterprise governance dashboard",
+  "description": "Trust & Governance Service (TGS) — enterprise governance dashboard",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "playwright test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,5 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  }
 }

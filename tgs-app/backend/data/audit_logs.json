@@ -421,5 +421,701 @@
     ],
     "reason": "The request to deploy the app to production is held due to the requester's role not matching the authorized role for production deployment as per POL-013, and the lack of CAB approval. The CAS assessment indicates a Zone 3 (Escalate) risk, which requires human escalation and consent. Given the policy requirements and the risk zone, the request cannot proceed without further review and approval. The decision is conservative, prioritizing policy compliance and accountability over immediate deployment. The request will be held pending further clarification and approval.",
     "recommendation": "Escalate the request to a Senior DevOps Engineer for review and obtain Change Advisory Board (CAB) approval before proceeding with the deployment."
+  },
+  {
+    "requestId": "b05cedbd-0550-4e8b-8ea0-c2d30d6bbd4d",
+    "evaluatedAt": "2026-08-13T06:47:43.144332+00:00",
+    "requester": {
+      "username": "Bhavya",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create database"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 17.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "APPROVED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, Developer, matches the Authorized Role specified in POL-001 for creating databases in the Development environment."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the Development environment, which aligns with the environment specified in POL-001."
+      },
+      {
+        "name": "Consent",
+        "status": "pass",
+        "detail": "No consent is required for creating databases in the Development environment according to POL-001."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "pass",
+        "detail": "The request complies with POL-001, which allows Developers to create databases in the Development environment for approved project activities."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by a Developer, a role accountable for database operations in the Development environment as per POL-001 and POL-002."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-001",
+        "title": "Create Database in Development Environment",
+        "category": "Database Operations",
+        "summary": "Developers may create databases in the Development environment for approved project activities, following enterprise naming standards and security guidelines."
+      }
+    ],
+    "reason": "The request to create a database is made by a Developer in the Development environment, which aligns with POL-001. Since the requester's role matches the Authorized Role, the environment is correct, no consent is required, and the request complies with policy, the decision is to approve the request. The low risk score and Zone 1 (Auto Respond) assessment from CAS further support this decision.",
+    "recommendation": "Proceed with creating the database in the Development environment, ensuring compliance with enterprise naming standards and security guidelines."
+  },
+  {
+    "requestId": "2ba3511c-f2eb-4aa7-8683-bf0d7385cd20",
+    "evaluatedAt": "2026-08-17T06:34:28.848576+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "IAM Administrator",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 64.0,
+      "zone": "Zone 3",
+      "zoneLabel": "Escalate",
+      "zoneColor": "orange"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, IAM Administrator, matches the Authorized Role for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the Development environment, which is within the scope of POL-021."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating an Administrator account according to POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "warning",
+        "detail": "The request does not fully comply with POL-021 due to the missing Security Manager approval."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by an identifiable user, Test, with a clear role, IAM Administrator, ensuring accountability."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Requires Security Manager approval and documented business justification for creating Administrator accounts."
+      }
+    ],
+    "reason": "The decision to hold the request is based on the lack of Security Manager approval, which is a critical requirement for creating an Administrator account as stated in POL-021. Given the request falls into Zone 3 (Escalate), it necessitates human escalation/consent. The requester's role as an IAM Administrator aligns with the policy, but the absence of the required consent is a significant factor in this decision. Therefore, the request is held pending the necessary approval.",
+    "recommendation": "Obtain Security Manager approval and resubmit the request with the necessary documentation."
+  },
+  {
+    "requestId": "5ad48a26-043d-4b19-901d-fd45291a2b17",
+    "evaluatedAt": "2026-08-17T06:35:22.526895+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 64.0,
+      "zone": "Zone 3",
+      "zoneLabel": "Escalate",
+      "zoneColor": "orange"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requester's role, Developer, does not match the policy's Authorized Role, IAM Administrator, for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is being made in the Development environment, which is within the scope of the company's policies."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks the required Security Manager approval as specified in POL-021 for creating an Administrator account."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "The request does not comply with POL-021, which requires IAM Administrator role and Security Manager approval for creating an Administrator account."
+      },
+      {
+        "name": "Accountability",
+        "status": "warning",
+        "detail": "The request lacks clear justification and approval, which could impact accountability as outlined in various policies including POL-021."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification, with the IAM Administrator as the authorized role."
+      }
+    ],
+    "reason": "The decision to hold this request is based on the fact that the requester's role does not match the authorized role specified in POL-021 for creating an Administrator account. Additionally, the request lacks the required Security Manager approval. Given the risk score and the zone assessment as Zone 3 (Escalate), it is prudent to hold the request until these deficiencies are addressed. The request's environment is appropriate, but the lack of proper authorization and consent are significant concerns. Therefore, holding the request pending further review and approval is the most appropriate course of action.",
+    "recommendation": "Escalate the request to the Security Manager for approval and ensure the requester understands the requirements outlined in POL-021."
+  },
+  {
+    "requestId": "7aed7460-86c5-4920-969b-7bd35bbabbd5",
+    "evaluatedAt": "2026-08-17T06:35:34.741414+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 80.0,
+      "zone": "Zone 4",
+      "zoneLabel": "Reject",
+      "zoneColor": "red"
+    },
+    "decision": "BLOCKED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requester's role, Developer, does not match the policy's Authorized Role, IAM Administrator, for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is being made in the Development environment, which is within the scope of some policies, but the specific action of creating an Administrator account is not limited to this environment."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating an Administrator account according to POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "The request does not comply with POL-021, which requires IAM Administrator role and Security Manager approval for creating an Administrator account."
+      },
+      {
+        "name": "Accountability",
+        "status": "fail",
+        "detail": "The request does not demonstrate accountability as it lacks the required approvals and justifications as outlined in POL-021."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification, with the IAM Administrator as the authorized role."
+      }
+    ],
+    "reason": "The decision to block the request is based on the high risk score and the Zone 4 (Reject) assessment from the Context Assessment Service, indicating that the action should not proceed autonomously. Furthermore, the requester's role as a Developer does not match the required IAM Administrator role for creating an Administrator account as per POL-021. The lack of Security Manager approval also violates POL-021. Given these factors, the request is blocked to ensure compliance with company policies and to maintain security and accountability standards.",
+    "recommendation": "The requester should submit the request through appropriate channels, ensuring they have the required approvals and justifications, and are acting within their authorized role or have the necessary permissions."
+  },
+  {
+    "requestId": "20e19849-f751-4b73-a24b-3caec4c1add5",
+    "evaluatedAt": "2026-08-17T06:36:51.282282+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 67.0,
+      "zone": "Zone 3",
+      "zoneLabel": "Escalate",
+      "zoneColor": "orange"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requester's role, Developer, does not match the policy's Authorized Role, IAM Administrator, for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is being made in the Development environment, which is within the scope of the company's policies for certain actions, but not for creating Administrator accounts as per POL-021."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating Administrator accounts as per POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "The request to create an Administrator account does not comply with POL-021, which requires IAM Administrator role and Security Manager approval."
+      },
+      {
+        "name": "Accountability",
+        "status": "warning",
+        "detail": "The request lacks clear justification or business need, which could impact accountability as per general principles of POL-021 and POL-019."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification, with the IAM Administrator as the authorized role."
+      }
+    ],
+    "reason": "The decision to hold the request is based on the requester's role not matching the authorized role for creating an Administrator account as per POL-021, and the lack of Security Manager approval. Given the Zone 3 (Escalate) assessment, human escalation is required. The request does not align with POL-021, which dictates specific requirements for creating Administrator accounts. Therefore, the request must be held pending further review and approval. The requester should provide additional context or justification for the request and obtain the necessary approvals before proceeding.",
+    "recommendation": "Escalate the request to the Security Manager for approval and provide documented business justification as required by POL-021."
+  },
+  {
+    "requestId": "5803b94b-2250-40a8-969a-b447c5215fd7",
+    "evaluatedAt": "2026-08-17T06:36:56.397834+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 33.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requester's role, Developer, does not match the policy's Authorized Role, IAM Administrator, for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is being made in the Development environment, which is within the scope of the company's policies for certain actions, but not for creating Administrator accounts."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating Administrator accounts according to POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "The request to create an Administrator account does not comply with POL-021, which requires specific authorization and approval."
+      },
+      {
+        "name": "Accountability",
+        "status": "fail",
+        "detail": "The request does not provide sufficient information to ensure accountability, as it lacks approval from the required Security Manager and does not align with the requester's role."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification, with the IAM Administrator as the authorized role."
+      }
+    ],
+    "reason": "The decision to hold the request is based on the requester's role not matching the authorized role for creating an Administrator account as per POL-021, the lack of required Security Manager approval, and the request's non-compliance with policy requirements. Given the Zone 1 (Auto Respond) assessment, the request should still be scrutinized due to its high-privilege nature and the potential risks associated with creating an Administrator account without proper authorization and approval. Therefore, the request is held pending further review and approval from the appropriate authorities.",
+    "recommendation": "The requester should submit a new request with the required Security Manager approval and ensure their role aligns with the policy's Authorized Role for creating Administrator accounts."
+  },
+  {
+    "requestId": "c72a1291-63ee-49a9-8a2d-53f2e5aafda8",
+    "evaluatedAt": "2026-08-17T06:37:23.753334+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "IAM Administrator",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 33.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, IAM Administrator, matches the Authorized Role for creating an administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the Development environment, which is within the scope of POL-021."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating an administrator account according to POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "warning",
+        "detail": "While POL-021 allows IAM Administrators to create administrator accounts, the lack of Security Manager approval raises concerns about compliance."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by an IAM Administrator, a role accountable for managing access and identities within the organization."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification."
+      }
+    ],
+    "reason": "The request to create an administrator account is held due to the lack of Security Manager approval, a requirement outlined in POL-021. Although the requester's role and the environment align with the policy, the absence of necessary consent is a critical factor in this decision. Given the risk score and zone assessment, it is essential to ensure all policy requirements are met before proceeding. The request cannot be approved without the required approval, highlighting the need for additional information or clarification. Therefore, the decision is to hold the request until the necessary consent is provided.",
+    "recommendation": "Obtain Security Manager approval and resubmit the request with the necessary documentation."
+  },
+  {
+    "requestId": "800725fc-b401-475e-a2de-a6f0a18ff639",
+    "evaluatedAt": "2026-08-17T06:37:59.497278+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "IAM Administrator",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account with Security Manager approval"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 33.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "APPROVED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, IAM Administrator, matches the policy's Authorized Role for creating an administrator account."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The policy allows the action in all environments, including Development."
+      },
+      {
+        "name": "Consent",
+        "status": "pass",
+        "detail": "The request includes Security Manager approval, which is required by the policy for creating an administrator account."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "pass",
+        "detail": "The request complies with the policy requirements for creating an administrator account, including Security Manager approval."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by an authorized IAM Administrator, ensuring accountability for the action."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification."
+      }
+    ],
+    "reason": "The request to create an administrator account with Security Manager approval is approved because it complies with the requirements outlined in POL-021. The requester's role as an IAM Administrator is authorized for this action, and the request includes the required Security Manager approval. Given the low risk score and Zone 1 assessment, the request can proceed autonomously. The policy requirements for creating an administrator account are met, and the request is made by an authorized and accountable individual.",
+    "recommendation": "Proceed with creating the administrator account as requested."
+  },
+  {
+    "requestId": "61a2c314-09fc-44d2-8c39-649f3e12d4d5",
+    "evaluatedAt": "2026-08-17T06:58:59.562576+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "IAM Administrator",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create Adminstrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 33.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester's role, IAM Administrator, matches the Authorized Role for creating an Administrator account as per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The request is for the Development environment, which is within the scope of POL-021 and other relevant policies."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "The request lacks evidence of Security Manager approval, which is required for creating an Administrator account according to POL-021."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "warning",
+        "detail": "The request does not fully comply with POL-021 due to the missing Security Manager approval, but it aligns with the general intent of Identity & Access Management policies like POL-019 and POL-020."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The request is made by an IAM Administrator, a role accountable for managing access and identities within the company, as implied by POL-021 and POL-020."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts require Security Manager approval and documented business justification."
+      }
+    ],
+    "reason": "The decision to hold this request is based on the lack of Security Manager approval, which is a critical requirement for creating an Administrator account as per POL-021. Although the requester's role and the environment are appropriate, the absence of necessary consent cannot be overlooked. Given the Zone 1 (Auto Respond) assessment, the request could potentially proceed autonomously if all policy and role checks pass, but the missing approval necessitates a more cautious approach. Therefore, the request is held pending further clarification or the provision of required approvals. The relevant policy, POL-021, emphasizes the need for approval and justification, guiding this decision.",
+    "recommendation": "Obtain Security Manager approval and resubmit the request with the necessary documentation."
+  },
+  {
+    "requestId": "eac0fbf4-738f-404e-905a-9b60e424ad64",
+    "evaluatedAt": "2026-08-17T09:10:59.161446+00:00",
+    "requester": {
+      "username": "bhavya",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Can I access production customer database for debugging?"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 85.0,
+      "zone": "Zone 4",
+      "zoneLabel": "Reject",
+      "zoneColor": "red"
+    },
+    "decision": "BLOCKED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "fail",
+        "detail": "The requestor is a Developer, but policies only authorize Database Administrators for production database access (POL-007)."
+      },
+      {
+        "name": "Environment",
+        "status": "fail",
+        "detail": "The action targets the Production environment, whereas the Developer role is limited to Development (POL-001)."
+      },
+      {
+        "name": "Consent",
+        "status": "fail",
+        "detail": "No data\u2011owner or managerial consent is provided; production data access requires explicit approval (POL-005)."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "fail",
+        "detail": "No retrieved policy permits a Developer to read the production customer database; all relevant policies restrict such access."
+      },
+      {
+        "name": "Accountability",
+        "status": "fail",
+        "detail": "The request lacks any audit\u2011able approval chain, violating accountability requirements for production data handling."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-001",
+        "title": "Create Database in Development Environment",
+        "category": "Database Operations",
+        "summary": "Developers may only create and work with databases in the Development environment."
+      },
+      {
+        "id": "POL-007",
+        "title": "Backup Production Database",
+        "category": "Database Operations",
+        "summary": "Only Database Administrators are authorized to perform actions on Production databases."
+      },
+      {
+        "id": "POL-005",
+        "title": "Refresh QA Database from Production",
+        "category": "Database Operations",
+        "summary": "Production data may be used only after masking and with Data Owner approval."
+      }
+    ],
+    "reason": "The request seeks production customer data access for debugging, which exceeds the Developer role's authorized scope defined in POL-001. Zone 4 from the CAS mandates a reject outcome, and POL-007 explicitly limits production database actions to Database Administrators. Additionally, POL-005 requires data\u2011owner consent for any use of production data, which is absent. Because the role, environment, consent, policy compliance, and accountability checks all fail, the system must block the request to uphold governance and risk controls.",
+    "recommendation": "Obtain proper authorization from a Database Administrator and Data Owner, or use a masked copy of the data in a Development or QA environment."
+  },
+  {
+    "requestId": "b564bf42-57ef-445b-87cb-c4c460541c83",
+    "evaluatedAt": "2026-08-17T09:12:58.810914+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "Developer",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create database"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 17.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "APPROVED",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "The requester is a Developer, which matches the Authorized Role defined in POL-001."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The action is targeted to the Development environment, exactly as permitted by POL-001."
+      },
+      {
+        "name": "Consent",
+        "status": "pass",
+        "detail": "POL-001 specifies no consent is required for creating databases in Development."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "pass",
+        "detail": "The request follows POL-001's guidelines on naming standards and security for Development databases."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "Developers are accountable for database creation under POL-001; no additional approvals are needed."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-001",
+        "title": "Create Database in Development Environment",
+        "category": "Database Operations",
+        "summary": "Developers may create databases in Development, must follow naming and security standards, and no consent is required."
+      }
+    ],
+    "reason": "The user is a Developer requesting to create a database in the Development environment. POL-001 explicitly authorizes Developers to perform this action in Development without any consent requirement, and the request aligns with the policy's naming and security guidelines. All governance checks (Authorized Role, Environment, Consent, Policy Compliance, Accountability) pass, and the CAS assessment places the request in Zone 1, allowing autonomous approval. Therefore, the action can be safely approved.",
+    "recommendation": "Proceed to create the database in Development, adhering to enterprise naming and security standards."
+  },
+  {
+    "requestId": "9081ff6c-cd88-4f20-bf99-f7fe3d556396",
+    "evaluatedAt": "2026-08-17T09:13:26.042111+00:00",
+    "requester": {
+      "username": "Test",
+      "role": "IAM Administrator",
+      "department": "Engineering",
+      "company": "ABC Bank",
+      "environment": "Development",
+      "query": "Create administrator account"
+    },
+    "company": "ABC Bank",
+    "cas": {
+      "riskScore": 16.0,
+      "zone": "Zone 1",
+      "zoneLabel": "Auto Respond",
+      "zoneColor": "green"
+    },
+    "decision": "HELD",
+    "checks": [
+      {
+        "name": "Authorized Role",
+        "status": "pass",
+        "detail": "IAM Administrator is the authorized role for creating administrator accounts per POL-021."
+      },
+      {
+        "name": "Environment",
+        "status": "pass",
+        "detail": "The policy permits the action in all environments, including Development."
+      },
+      {
+        "name": "Consent",
+        "status": "warning",
+        "detail": "Policy POL-021 requires Security Manager approval, which was not provided in the request."
+      },
+      {
+        "name": "Policy Compliance",
+        "status": "warning",
+        "detail": "Missing required consent violates the policy's consent requirement."
+      },
+      {
+        "name": "Accountability",
+        "status": "pass",
+        "detail": "The requester holds the IAM Administrator role, aligning with accountability expectations."
+      }
+    ],
+    "policies": [
+      {
+        "id": "POL-021",
+        "title": "Create Administrator Account",
+        "category": "Identity & Access Management",
+        "summary": "Administrator accounts may only be created by an IAM Administrator with documented business justification and explicit Security Manager approval."
+      }
+    ],
+    "reason": "The request aligns with the authorized role and environment defined in POL-021, but it lacks the mandatory Security Manager approval required for creating administrator accounts. Because consent is a non\u2011optional policy condition, the request cannot be auto\u2011approved despite the low risk score and Zone 1 classification. The governance checks reflect compliance with role and environment, while flagging consent and overall policy compliance as warnings, leading to a held decision pending proper approval.",
+    "recommendation": "Obtain Security Manager approval and resubmit the request."
   }
 ]

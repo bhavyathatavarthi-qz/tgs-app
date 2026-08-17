@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 PORT = int(os.getenv("PORT", "5000"))
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "groq/compound-mini")
 CORS_ORIGINS = [
     origin.strip()
     for origin in os.getenv("CORS_ORIGIN", "http://localhost:3000,http://localhost:5173").split(",")
